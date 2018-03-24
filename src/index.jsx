@@ -1,7 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import Root from './components/root'
+
+import reducer from './store/todo'
+
 ReactDOM.render(
-  (<div>hello world</div>),
+  (<Root/>),
   document.getElementById('root')
 )
