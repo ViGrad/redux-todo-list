@@ -20,12 +20,12 @@ export const addTodoReducer = (state, {id, task, completed=false}) => ({
 })
 
 export const toogleTodoIfNeeded = (todo, action) => {
-  console.log('TODO', todo)
   return todo.id === action.id
     ? toogleTodo(todo)
     : todo
 }
 
-export const toogleTodo = (todo) => {
-  return Object.assign({}, todo, {completed: !todo.completed})
-}
+export const toogleTodo = (todo) => ({
+    ...todo, 
+    completed: !todo.completed
+  })
