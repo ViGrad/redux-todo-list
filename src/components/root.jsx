@@ -1,16 +1,13 @@
 import React from 'react'
 
-import Todo from './todo'
-
-const todo = {
-    id: 1,
-    task: 'apprendre redux',
-    completed: false
-  }
+import { Provider } from 'react-redux'
+import TodoList from './todo-list'
 
   
-const Root = () => (
-    <Todo {...todo} />
+const Root = ({store}) => (
+  <Provider store={store} >
+    <TodoList />
+  </Provider>
 )
 
 export default Root

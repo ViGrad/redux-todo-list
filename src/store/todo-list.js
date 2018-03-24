@@ -2,21 +2,27 @@ import todoReducer from './todo'
 
 import { ADD_TODO, TOOGLE_TODO } from '../actions/enum'
 
-export default (state, action) => {
+export default (state = [], action) => {
   switch (action.type) {
     case ADD_TODO:
-      return addTodoReducer(state, action)
+      return addTodo(state, action)
 
     case TOOGLE_TODO:
-      return toogleTodoRedcuer(state, action)
+      return toogleTodo(state, action)
+
+    default:
+      return state
   }
 }
 
-const addTodoReducer = (todoList, action) => ([
+const addTodo = (todoList, action) => ([
     ...todoList,
     todoReducer(undefined, action)
   ])
 
-const toogleTodoRedcuer = 
+const toogleTodo = 
   (todoList, action) => 
-    todoList.map(todo => todoReducer(todo, action))
+    todoList.map(todo => 
+      todoReducer(todo, action)
+  )
+

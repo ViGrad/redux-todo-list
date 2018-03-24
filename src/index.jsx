@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom'
 
 import Root from './components/root'
 
-import reducer from './store/todo'
+import configureStore from './store/configure-store'
+
+const store = configureStore();
 
 ReactDOM.render(
-  (<Root/>),
+  (<Root store={store}/>),
   document.getElementById('root')
 )
