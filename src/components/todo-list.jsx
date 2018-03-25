@@ -3,7 +3,8 @@ import propTypes from 'prop-types'
 
 import Todo from './todo'
 
-import { toogleTodo } from '../actions/todo-list' 
+import { toogleTodo } from '../actions/todo-list'
+import { getVisibileTodos } from '../utils/todo-tools'
 
 class TodoList extends React.Component {
   componentDidMount() {
@@ -20,8 +21,13 @@ class TodoList extends React.Component {
   render() {
     const { store } = this.context 
     const state = store.getState()
+
+    const visibleTodoList = getVisibileTodos(
+      state.todoList,
+      state.visibilityFilter
+    )
     
-    return state.todoList.map(
+    return visibleTodoList.map(
       todo => 
         <Todo 
           key={todo.id} 
