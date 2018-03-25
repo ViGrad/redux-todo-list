@@ -1,6 +1,6 @@
 import todoReducer from './todo'
 
-import { ADD_TODO, TOOGLE_TODO } from '../actions/enum'
+import { ADD_TODO, TOOGLE_TODO } from '../../actions/enum'
 
 export default (state = [], action) => {
   switch (action.type) {

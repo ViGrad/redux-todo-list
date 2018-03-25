@@ -3,11 +3,13 @@ import React from 'react'
 const Todo = ({
   id, 
   task, 
-  completed
+  completed,
+  ...props
 }) => (
   <li 
     key={id} 
     style={{textDecoration: completed ? 'line-through' : 'none'}}
+    {...props}
   > 
     {task} 
   </li>

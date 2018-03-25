@@ -2,7 +2,7 @@ import { ADD_TODO, TOOGLE_TODO } from './enum'
 
 let nextId = 4
 
-export const addTodo = (id, task) => ({
+export const addTodo = (task) => ({
   type: ADD_TODO,
   id: nextId++,
   task

@@ -1,7 +1,7 @@
 import { createStore, combineReducers } from 'redux'
 
 import { loadState, saveState } from '../utils/localStorage'
-import todoList from './todo-list'
+import todoList from './todo-list/index'
 
 export const initialState = {
   todoList: [
@@ -36,8 +36,6 @@ const configureStore = () => {
     reducer,
     persistedState
   )
-
-  console.log(store.getState())
 
   store.subscribe(
     () => saveState(store.getState)

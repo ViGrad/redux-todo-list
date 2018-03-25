@@ -1,4 +1,4 @@
-import { ADD_TODO, TOOGLE_TODO } from '../actions/enum'
+import { ADD_TODO, TOOGLE_TODO } from '../../actions/enum'
 
 export default (state=undefined, action) => {
   switch(action.type) {
