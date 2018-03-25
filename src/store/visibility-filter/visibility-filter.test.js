@@ -1,4 +1,4 @@
-import { SET_VISIBILITY_FILTER } from '../../actions/enum'
+import { SET_VISIBILITY_FILTER, RESET_APP } from '../../actions/enum'
 
 import reducer from './visibility-filter'
 
@@ -14,7 +14,19 @@ describe('visibility filter reducer', () => {
     const expectedState =  'SHOW_COMPLETED'
 
     expect(
-      reducer(undefined, givenAction)
+      reducer(givenState, givenAction)
+    ).toEqual(expectedState)
+  })
+  
+  it('reset app', () => {
+    const givenAction = {
+      type: RESET_APP,
+    }
+
+    const expectedState =  'SHOW_ALL'
+
+    expect(
+      reducer(givenState, givenAction)
     ).toEqual(expectedState)
   })
 })

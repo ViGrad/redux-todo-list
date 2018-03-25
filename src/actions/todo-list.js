@@ -1,10 +1,14 @@
 import { ADD_TODO, TOOGLE_TODO } from './enum'
 
-let nextId = 4
+let nextId = () => {
+  const nextId = Math.random() * 100000
+  console.log(nextId)
+  return nextId
+}
 
 export const addTodo = (task) => ({
   type: ADD_TODO,
-  id: nextId++,
+  id: nextId(),
   task
 })
 

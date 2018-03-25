@@ -1,14 +1,19 @@
 import todoReducer from './todo'
 
-import { ADD_TODO, TOOGLE_TODO } from '../../actions/enum'
+import { ADD_TODO, TOOGLE_TODO, RESET_APP } from '../../actions/enum'
 
-export default (state = [], action) => {
+const initialState = []
+
+export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_TODO:
       return addTodo(state, action)
 
     case TOOGLE_TODO:
       return toogleTodo(state, action)
+
+    case RESET_APP:
+      return initialState
 
     default:
       return state

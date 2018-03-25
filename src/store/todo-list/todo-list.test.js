@@ -1,4 +1,4 @@
-import { ADD_TODO, TOOGLE_TODO } from '../../actions/enum'
+import { ADD_TODO, TOOGLE_TODO, RESET_APP } from '../../actions/enum'
 import reducer from './todo-list'
 
 describe('todo list reducer', () => {
@@ -64,6 +64,18 @@ describe('todo list reducer', () => {
         completed: true
       }
     ]
+
+    expect(
+      reducer(givenState, givenAction)
+    ).toEqual(expectedState)
+  })
+
+  it('Reset app', () => {
+    const givenAction = {
+      type: RESET_APP,
+    }
+
+    const expectedState = []
 
     expect(
       reducer(givenState, givenAction)
