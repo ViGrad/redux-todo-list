@@ -1,33 +1,32 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
+import { connect } from 'react-redux'
 import { addTodo } from '../actions/todo-list'
 
-class AddTodo extends React.Component {
-  render() {
-    const { store } = this.context
+let AddTodo = ({ dispatch }) => {
+  let input
 
-    return (
-      <form onSubmit={(event) => {
-        event.preventDefault()
-        store.dispatch(
-          addTodo(this.input.value)
-        )
+  return (
+    <form onSubmit={(event) => {
+      event.preventDefault()
+      
+      dispatch(
+        addTodo(input.value)
+      )
 
-        this.input.value = ''
-      }}>
-        <input ref={node => {
-          this.input = node
-        }}/>
-        <button type='submit'>
-          Add Todo
-        </button>
-      </form>
-    )
-  }
+      input.value = ''
+    }}>
+      <input ref={node => {
+        input = node
+      }}/>
+      <button type='submit'>
+        Add Todo
+      </button>
+    </form>
+  )
 }
-AddTodo.contextTypes = {
-  store: propTypes.object
-}
+
+AddTodo = connect()(AddTodo)
 
 export default AddTodo
