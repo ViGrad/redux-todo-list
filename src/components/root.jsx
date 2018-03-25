@@ -1,12 +1,13 @@
 import React from 'react'
 
 import { Provider } from 'react-redux'
+import App from './app'
 import TodoList from './todo-list'
 
   
 const Root = ({store}) => (
   <Provider store={store} >
-    <TodoList />
+    <App />
   </Provider>
 )
 
