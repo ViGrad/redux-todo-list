@@ -1,13 +1,15 @@
 import React from 'react'
 
-import { Provider } from 'react-redux'
 import App from './app'
-import TodoList from './todo-list'
+import { Provider } from 'react-redux'
+import { BrowserRouter, Route, Link } from "react-router-dom";
 
   
 const Root = ({store}) => (
   <Provider store={store} >
-    <App />
+    <BrowserRouter>
+      <Route path='/:active?' component={App} />
+    </BrowserRouter>
   </Provider>
 )
 

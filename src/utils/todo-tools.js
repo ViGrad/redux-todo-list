@@ -1,12 +1,12 @@
 export const getVisibileTodos = (todoList, filter) => {
   switch(filter) {
-    case 'SHOW_ACTIVE':
+    case 'active':
       return todoList.filter(todo => !todo.completed)
 
-    case 'SHOW_COMPLETED':
-      return todoList.filter(todo => todo.completed)
+    case 'completed':
+    return todoList.filter(todo => todo.completed)
 
     default:
-      return todoList
+    return todoList
   }
 }

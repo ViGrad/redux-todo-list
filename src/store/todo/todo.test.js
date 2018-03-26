@@ -1,6 +1,6 @@
 import { ADD_TODO, TOOGLE_TODO } from '../../actions/enum'
 
-import reducer from './todo'
+import reducer from './index'
 
 describe('todo reducer', () => {
   const givenState = {

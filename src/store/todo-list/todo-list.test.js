@@ -1,5 +1,5 @@
 import { ADD_TODO, TOOGLE_TODO, RESET_APP } from '../../actions/enum'
-import reducer from './todo-list'
+import reducer from './index'
 
 describe('todo list reducer', () => {
   const givenState = [

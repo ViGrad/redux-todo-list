@@ -1,8 +1,7 @@
 import { createStore, combineReducers } from 'redux'
 
 import { loadState, saveState } from '../utils/localStorage'
-import todoList from './todo-list/index'
-import visibilityFilter from './visibility-filter'
+import todoList from './todo-list'
 
 export const initialState = {
   todoList: [
@@ -27,10 +26,8 @@ export const initialState = {
 const configureStore = () => {
   const persistedState = loadState() || initialState
 
-
   const reducer = combineReducers({
     todoList,
-    visibilityFilter
   })
   
   const store = createStore(
@@ -40,7 +37,7 @@ const configureStore = () => {
 
   store.subscribe(
     () => saveState({
-      todoList: store.getState().todoList
+      todoList: store.getState().todoList,
     })
   )
 
