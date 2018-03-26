@@ -12,7 +12,7 @@ const FilterLink = ({
 }) => (
   <NavLink
     exact
-    to={filter === 'all' ? '/' : '/' + filter}
+    to={filter === 'all' ? '/' : filter}
     activeStyle={{
       textDecoration: 'none',
       color: 'black'
