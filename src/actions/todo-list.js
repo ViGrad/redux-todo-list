@@ -2,7 +2,6 @@ import { ADD_TODO, TOOGLE_TODO } from './enum'
 
 let nextId = () => {
   const nextId = Math.random() * 100000
-  console.log(nextId)
   return nextId
 }
 
