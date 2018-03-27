@@ -31,3 +31,16 @@ const toogleTodo =
       todoReducer(todo, action)
   )
 
+  
+export const getVisibileTodos = (state, filter) => {
+  switch(filter) {
+    case 'active':
+      return state.filter(todo => !todo.completed)
+
+    case 'completed':
+    return state.filter(todo => todo.completed)
+
+    default:
+    return state
+  }
+}

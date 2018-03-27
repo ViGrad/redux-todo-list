@@ -4,7 +4,6 @@ import propTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 
 import { connect } from 'react-redux'
-import { setVisibilityFilter } from '../actions/visibility-filter'
 
 const FilterLink = ({
   filter,
@@ -12,7 +11,7 @@ const FilterLink = ({
 }) => (
   <NavLink
     exact
-    to={filter === 'all' ? '/' : filter}
+    to={filter === '/all' ? '/' : filter}
     activeStyle={{
       textDecoration: 'none',
       color: 'black'
