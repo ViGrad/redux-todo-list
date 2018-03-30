@@ -2,7 +2,7 @@ import { createStore } from 'redux'
 
 import { loadState, saveState } from './utils/localStorage'
 
-import reducer, { initialState } from './reducers' 
+import reducer from './reducers' 
 
 const addLoggingToDispatch = (store) => {
   const rawDisptach = store.dispatch
@@ -22,14 +22,13 @@ const addLoggingToDispatch = (store) => {
 }
 
 const configureStore = () => {
-  const persistedState = loadState() || initialState
+  const persistedState = loadState()
 
   const store = createStore(
     reducer,
     persistedState
   )
 
-  console.log(process.env.NODE_ENV)
   if (process.env.NODE_ENV === 'development') {
     store.dispatch = addLoggingToDispatch(store)
   }

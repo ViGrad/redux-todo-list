@@ -1,4 +1,5 @@
 import { ADD_TODO, TOOGLE_TODO } from './enum'
+import {v4} from 'uuid'
 
 let nextId = () => {
   const nextId = Math.random() * 100000
@@ -7,7 +8,7 @@ let nextId = () => {
 
 export const addTodo = (task) => ({
   type: ADD_TODO,
-  id: nextId(),
+  id: v4(),
   task
 })
 
