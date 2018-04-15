@@ -1,47 +1,20 @@
-import { createStore } from 'redux'
-
-import { loadState, saveState } from './utils/localStorage'
+import { createStore, applyMiddleware } from 'redux'
+import promise from 'redux-promise'
+import { createLogger } from 'redux-logger'
 
 import reducer from './reducers' 
 
-const addLoggingToDispatch = (store) => {
-  const rawDisptach = store.dispatch
-  if(!console.group){
-    return rawDisptach
-  }
-
-  return (action) => {
-    console.group(action.type)
-    console.log('%c Prev State', 'color: gray', store.getState())
-    console.log('%c Action', 'color: blue', action)
-    const returnValue = rawDisptach(action)
-    console.log('%c Next State', 'color: green', store.getState())
-    console.groupEnd(action.type)
-    return returnValue
-  }
-}
-
 const configureStore = () => {
-  const persistedState = loadState()
-
-  const store = createStore(
-    reducer,
-    persistedState
-  )
+  const middleWares = [promise];
 
   if (process.env.NODE_ENV === 'development') {
-    store.dispatch = addLoggingToDispatch(store)
+    middleWares.push(createLogger())
   }
 
-  store.subscribe(
-    () => saveState({
-      todoList: store.getState().todoList,
-    })
+  return createStore(
+    reducer,
+    applyMiddleware(...middleWares)
   )
-
-  return store
 }
-
-
 
 export default configureStore
