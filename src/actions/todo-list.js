@@ -1,4 +1,4 @@
-import { ADD_TODO, TOOGLE_TODO, REVEIVE_TODOS } from './enum'
+import { ADD_TODO, TOOGLE_TODO, RECEIVE_TODOS } from './enum'
 import { v4 } from 'uuid'
 import * as api from '../api'
 
@@ -20,7 +20,7 @@ export const fetchTodos = (filter) =>
 
 
 export const receiveTodos = (filter, response) => ({
-  type: REVEIVE_TODOS,
+  type: RECEIVE_TODOS,
   filter,
   response
 })

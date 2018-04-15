@@ -3,15 +3,15 @@ import {v4} from 'uuid'
 const fakeDataBase = {
   todoList: [{
     id: v4(),
-    text: 'hey',
+    task: 'hey',
     completed: false
   }, {
     id: v4(),
-    text: 'oh',
+    task: 'oh',
     completed: false
   }, {
     id: v4(),
-    text: 'let go',
+    task: 'let go',
     completed: false
   }]
 }
