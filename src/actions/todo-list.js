@@ -1,4 +1,4 @@
-import { ADD_TODO, TOOGLE_TODO, RECEIVE_TODOS } from './enum'
+import { ADD_TODO, TOOGLE_TODO, RECEIVE_TODOS, REQUEST_TODOS } from './enum'
 import { v4 } from 'uuid'
 import * as api from '../api'
 
@@ -23,4 +23,9 @@ export const receiveTodos = (filter, response) => ({
   type: RECEIVE_TODOS,
   filter,
   response
+})
+
+export const requestTodos = (filter) => ({
+  type: REQUEST_TODOS,
+  filter
 })

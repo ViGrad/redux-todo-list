@@ -4,7 +4,7 @@ const fakeDataBase = {
   todoList: [{
     id: v4(),
     task: 'hey',
-    completed: false
+    completed: true
   }, {
     id: v4(),
     task: 'oh',
@@ -12,7 +12,7 @@ const fakeDataBase = {
   }, {
     id: v4(),
     task: 'let go',
-    completed: false
+    completed: true
   }]
 }
 
