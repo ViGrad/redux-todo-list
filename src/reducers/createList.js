@@ -1,7 +1,20 @@
 import { combineReducers } from 'redux'
-import { FETCH_TODO_FAILURE, FETCH_TODO_REQUEST, FETCH_TODO_SUCESS, RESET_APP, ADD_TODO_SUCCESS } from '../actions/enum'
+import { FETCH_TODO_FAILURE, TOOGLE_TODO_SUCCESS, FETCH_TODO_REQUEST, FETCH_TODO_SUCESS, RESET_APP, ADD_TODO_SUCCESS } from '../actions/enum'
 
 const createList = (filter) => {
+  const handleToogle = (state, action) => {
+    const { result: toogledId, entities } = action.response
+    const { completed } = entities.todos[toogledId]
+    const shouldRemove = (
+      (completed && filter === 'active') ||
+      (!completed && filter === 'completed')
+    )
+
+    return shouldRemove ? 
+      state.filter(id => id !== toogledId) :
+      state
+  }
+
   const ids = (state = [], action) => 
   {
     switch(action.type) {
@@ -13,6 +26,8 @@ const createList = (filter) => {
         return filter !== 'completed' ?
           [...state, action.response.result] :
           state
+      case TOOGLE_TODO_SUCCESS:
+        return handleToogle(state, action)
       case RESET_APP:
         return {}
       default:

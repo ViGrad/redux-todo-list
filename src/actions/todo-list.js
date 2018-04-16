@@ -1,6 +1,6 @@
 import { normalize } from 'normalizr'
 import * as schema from '../schema'
-import { ADD_TODO_SUCCESS, TOOGLE_TODO, RECEIVE_TODOS, FETCH_TODO_FAILURE, FETCH_TODO_SUCESS, FETCH_TODO_REQUEST } from './enum'
+import { ADD_TODO_SUCCESS, TOOGLE_TODO_SUCCESS, FETCH_TODO_FAILURE, FETCH_TODO_SUCESS, FETCH_TODO_REQUEST } from './enum'
 import * as api from '../api'
 import { getIsFetching } from '../reducers';
 
@@ -14,10 +14,14 @@ export const addTodo = (task) => (dispatch) =>
     })
   })
 
-export const toogleTodo = (id) => ({
-  type: TOOGLE_TODO,
-  id
-})
+export const toogleTodo = (id) => (dispatch) => {
+  api.toogleTodo(id).then(response => {
+    dispatch({
+      type: TOOGLE_TODO_SUCCESS,
+      response: normalize(response, schema.todo)
+    })
+  })
+}
 
 export const fetchTodos = (filter) => (dispatch, getState) => {
   if (getIsFetching(getState(), filter)) {
