@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { RECEIVE_TODOS, RESET_APP, REQUEST_TODOS } from '../actions/enum'
+import { FETCH_TODO_FAILURE, FETCH_TODO_REQUEST, FETCH_TODO_SUCESS, RESET_APP } from '../actions/enum'
 
 const createList = (filter) => {
   const ids = (state = [], action) => 
@@ -8,7 +8,7 @@ const createList = (filter) => {
       return state
     }
     switch(action.type) {
-      case RECEIVE_TODOS: 
+      case FETCH_TODO_SUCESS: 
         return action.response.map(todo => todo.id)
       case RESET_APP:
         return {}
@@ -22,10 +22,26 @@ const createList = (filter) => {
       return state
     }
     switch(action.type) {
-      case REQUEST_TODOS:
+      case FETCH_TODO_REQUEST:
         return true
-      case RECEIVE_TODOS: 
+      case FETCH_TODO_FAILURE: 
+      case FETCH_TODO_SUCESS: 
         return false
+      default:
+        return state
+    }
+  }
+
+  const errorMessage = (state = null, action) => {
+    if (action.filter !== filter) {
+      return state
+    }
+    switch(action.type) {
+      case FETCH_TODO_FAILURE:
+        return action.message
+      case FETCH_TODO_REQUEST:
+      case FETCH_TODO_SUCESS:
+        return null
       default:
         return state
     }
@@ -34,6 +50,7 @@ const createList = (filter) => {
   return combineReducers({
     ids,
     isFetching,
+    errorMessage,
   })
 }
 
@@ -41,3 +58,4 @@ export default createList
 
 export const getIds = (state) => state.ids
 export const getIsFetching = (state) => state.isFetching
+export const getErrorMessage = (state) => state.errorMessage

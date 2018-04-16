@@ -1,4 +1,4 @@
-import { ADD_TODO, TOOGLE_TODO, RECEIVE_TODOS, REQUEST_TODOS } from './enum'
+import { ADD_TODO, TOOGLE_TODO, RECEIVE_TODOS, FETCH_TODO_FAILURE, FETCH_TODO_SUCESS, FETCH_TODO_REQUEST } from './enum'
 import { v4 } from 'uuid'
 import * as api from '../api'
 import { getIsFetching } from '../reducers';
@@ -19,20 +19,23 @@ export const fetchTodos = (filter) => (dispatch, getState) => {
     return Promise.resolve()
   }
 
-  dispatch(requestTodos(filter))
+  dispatch({
+    type: FETCH_TODO_REQUEST,
+    filter
+  })
+
   return api.fetchTodoList(filter).then(response => 
-    dispatch(receiveTodos(filter, response))
+    dispatch({
+      type: FETCH_TODO_SUCESS,
+      filter,
+      response
+    }),
+    err => {
+      dispatch({
+        type: FETCH_TODO_FAILURE,
+        filter,
+        message: err.message || 'something goes wrong'
+      })
+    }
   )
 }
-
-
-export const receiveTodos = (filter, response) => ({
-  type: RECEIVE_TODOS,
-  filter,
-  response
-})
-
-export const requestTodos = (filter) => ({
-  type: REQUEST_TODOS,
-  filter
-})

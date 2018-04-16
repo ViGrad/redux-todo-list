@@ -20,5 +20,8 @@ export const getVisibileTodos = (state, filter) => {
   return ids.map(id => fromById.getTodo(state.byId, id))
 }
 
+export const getErrorMessage = (state, filter) => 
+  fromList.getErrorMessage(state.listByFilter[filter])
+
 export const getIsFetching = (state, filter) => 
   fromList.getIsFetching(state.listByFilter[filter])

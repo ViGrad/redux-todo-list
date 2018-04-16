@@ -21,16 +21,17 @@ const delay = (ms) =>
 
 export const fetchTodoList = (filter) => 
   delay(500).then(() => {
+    if(Math.random() > 0.5) {
+      throw new Error('Ka-boom!')
+    }
+
     switch(filter) {
       case 'all':
         return fakeDataBase.todoList
-
       case 'active':
         return fakeDataBase.todoList.filter(todo => !todo.completed)
-
       case 'completed':
         return fakeDataBase.todoList.filter(todo => todo.completed)
-  
       default:
         return new Error(`Unknow filter: ${filter}.`)
     }
