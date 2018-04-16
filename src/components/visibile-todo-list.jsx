@@ -20,7 +20,6 @@ class VisibleTodoList extends React.Component {
 
   fetchDatas() {
     const { filter, fetchTodos, requestTodos } = this.props
-    requestTodos(filter)
     fetchTodos(filter)
   }
 
