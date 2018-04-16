@@ -1,13 +1,18 @@
-import { ADD_TODO, TOOGLE_TODO, RECEIVE_TODOS, FETCH_TODO_FAILURE, FETCH_TODO_SUCESS, FETCH_TODO_REQUEST } from './enum'
-import { v4 } from 'uuid'
+import { normalize } from 'normalizr'
+import * as schema from '../schema'
+import { ADD_TODO_SUCCESS, TOOGLE_TODO, RECEIVE_TODOS, FETCH_TODO_FAILURE, FETCH_TODO_SUCESS, FETCH_TODO_REQUEST } from './enum'
 import * as api from '../api'
 import { getIsFetching } from '../reducers';
 
-export const addTodo = (task) => ({
-  type: ADD_TODO,
-  id: v4(),
-  task
-})
+
+
+export const addTodo = (task) => (dispatch) => 
+  api.addTodo(task).then(response => {
+    dispatch({
+      type: ADD_TODO_SUCCESS,
+      response: normalize(response, schema.todo)
+    })
+  })
 
 export const toogleTodo = (id) => ({
   type: TOOGLE_TODO,
@@ -28,7 +33,7 @@ export const fetchTodos = (filter) => (dispatch, getState) => {
     dispatch({
       type: FETCH_TODO_SUCESS,
       filter,
-      response
+      response: normalize(response, schema.arrayOfTodos)
     }),
     err => {
       dispatch({

@@ -1,4 +1,4 @@
-export const ADD_TODO = 'ADD_TODO'
+export const ADD_TODO_SUCCESS = 'ADD_TODO_SUCCESS'
 export const TOOGLE_TODO = 'TOOGLE_TODO'
 export const FETCH_TODO_REQUEST = 'FETCH_TODO_REQUEST'
 export const FETCH_TODO_SUCESS = 'FETCH_TODO_SUCESS'

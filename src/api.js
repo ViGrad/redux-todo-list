@@ -19,9 +19,27 @@ const fakeDataBase = {
 const delay = (ms) => 
   new Promise(resolve => setTimeout(resolve, ms))
 
+export const addTodo = (task) => 
+  delay(500).then(() => {
+    const todo = {
+      id: v4(),
+      task,
+      completed: false
+    }
+    fakeDataBase.todoList.push(todo)
+    return todo
+  })
+
+export const toogleTodo = (id) =>
+  delay(500).then(() => {
+    const todo = fakeDataBase.todoList.find((todo) => todo.id === id)
+    todo.completed = !todo.completed
+    return todo
+  })
+
 export const fetchTodoList = (filter) => 
   delay(500).then(() => {
-    if(Math.random() > 0.5) {
+    if(Math.random() > 0.9) {
       throw new Error('Ka-boom!')
     }
 

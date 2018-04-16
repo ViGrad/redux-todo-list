@@ -1,15 +1,18 @@
 import { combineReducers } from 'redux'
-import { FETCH_TODO_FAILURE, FETCH_TODO_REQUEST, FETCH_TODO_SUCESS, RESET_APP } from '../actions/enum'
+import { FETCH_TODO_FAILURE, FETCH_TODO_REQUEST, FETCH_TODO_SUCESS, RESET_APP, ADD_TODO_SUCCESS } from '../actions/enum'
 
 const createList = (filter) => {
   const ids = (state = [], action) => 
   {
-    if (action.filter !== filter) {
-      return state
-    }
     switch(action.type) {
       case FETCH_TODO_SUCESS: 
-        return action.response.map(todo => todo.id)
+        return filter === action.filter ?
+          action.response.result :
+          state
+      case ADD_TODO_SUCCESS:
+        return filter !== 'completed' ?
+          [...state, action.response.result] :
+          state
       case RESET_APP:
         return {}
       default:
